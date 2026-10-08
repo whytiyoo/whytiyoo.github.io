@@ -310,7 +310,7 @@ html[data-theme="dark"] .theme-toggle__moon { display: block; }
 .hero__name {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 4.4vw, 2.6rem);
-  margin: 0 0 0.1rem;
+  margin: 0 0 0.85rem;
   letter-spacing: -0.015em;
 }
 .hero__name-en {

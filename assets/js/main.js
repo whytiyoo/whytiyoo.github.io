@@ -25,7 +25,7 @@
     root.setAttribute('data-theme', theme);
     if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#14171b' : '#ffffff');
     if (themeToggle) {
-      themeToggle.setAttribute('aria-label', theme === 'dark' ? '切换到浅色模式' : '切换到深色模式');
+      themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
       themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     }
     if (persist) {
@@ -196,7 +196,7 @@
       if (pre) {
         pre.hidden = !pre.hidden;
         toggle.setAttribute('aria-expanded', pre.hidden ? 'false' : 'true');
-        toggle.textContent = pre.hidden ? 'BibTeX' : '隐藏 BibTeX';
+        toggle.textContent = pre.hidden ? 'BibTeX' : 'Hide BibTeX';
       }
       return;
     }
@@ -208,9 +208,9 @@
       if (!source) return;
       var label = copyBtn.textContent;
       copyText(source.textContent.trim()).then(function () {
-        flash(copyBtn, '已复制 ✓', label, 'is-copied');
+        flash(copyBtn, 'Copied ✓', label, 'is-copied');
       }).catch(function () {
-        flash(copyBtn, '请手动复制', label, 'is-copied');
+        flash(copyBtn, 'Copy failed — select manually', label, 'is-copied');
         source.hidden = false;
       });
     }
