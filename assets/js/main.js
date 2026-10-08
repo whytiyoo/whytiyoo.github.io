@@ -86,28 +86,42 @@
     });
   }
 
-  /* --------------------------- 滚动高亮当前栏目 --------------------------- */
+  /* --------------------------- 滚动高亮当前栏目 ---------------------------
+     用「读数线」判定：取最后一个顶边已越过视口 35% 高度的区块；
+     滑到底部时高亮最后一段。这样页面内容较少（多个区块同时可见）时也不会乱跳。 */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__menu a[href^="#"]'));
-  var sectionMap = {};
+  var sections = [];
   navLinks.forEach(function (link) {
     var id = link.getAttribute('href').slice(1);
     var target = id ? document.getElementById(id) : null;
-    if (target) sectionMap[id] = link;
+    if (target) sections.push({ link: link, el: target });
   });
 
-  if ('IntersectionObserver' in window && Object.keys(sectionMap).length) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        navLinks.forEach(function (link) { link.classList.remove('is-current'); });
-        var active = sectionMap[entry.target.id];
-        if (active) active.classList.add('is-current');
-      });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-
-    Object.keys(sectionMap).forEach(function (id) {
-      spy.observe(document.getElementById(id));
+  function updateActiveSection() {
+    if (!sections.length) return;
+    var current = sections[0].link;
+    var atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+    if (atBottom) {
+      current = sections[sections.length - 1].link;
+    } else {
+      var line = window.innerHeight * 0.35;
+      for (var i = 0; i < sections.length; i += 1) {
+        if (sections[i].el.getBoundingClientRect().top <= line) current = sections[i].link;
+      }
+    }
+    navLinks.forEach(function (link) {
+      var isCurrent = link === current;
+      link.classList.toggle('is-current', isCurrent);
+      if (isCurrent) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
     });
+  }
+
+  if (sections.length) {
+    // 只做三次 getBoundingClientRect，开销极小，直接响应滚动事件即可（不再用 rAF 节流）
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    updateActiveSection();
   }
 
   /* ----------------------------- 论文分类筛选 ----------------------------- */
