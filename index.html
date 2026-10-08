@@ -45,16 +45,24 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- =========================================================================
-     内容维护说明（注释保持中文，方便你自己维护；页面上不显示）
-     · 页面全部内容已改为英文（lang="en"）。
-     · 仍需你替换的地方（全文搜索「待替换」）：
-         1. Portrait   assets/img/avatar.svg → 换成你的照片（正方形，建议 ≥ 400×400）
-         2. About 第二段：目前只写了研究方向，等你有在研工作/复现/实习时补一段
-     · 按你的要求，页面**刻意不放**简历下载与邮箱（无 mailto、结构化数据里也没有 email）。
-     · 以下栏目的代码以注释形式保留，有内容时取消注释，并在顶部导航 .nav__menu 里加一行：
+     MAINTENANCE NOTES (comments only — never rendered on the page)
+
+     · The whole page is in English (lang="en").
+     · Still to fill in — search for "TODO" in this file:
+         1. Portrait: assets/img/avatar.svg  → replace with your own photo
+            (square, 400x400 or larger)
+         2. About, second paragraph: it currently describes research interests
+            only. Add a paragraph about your own work once you have results,
+            reproductions, course projects or internships.
+     · Intentionally NOT included, as requested: a CV download and an email
+       address. There is no mailto: link anywhere and no "email" field in the
+       structured data above.
+     · The sections below are kept as comments. To enable one, uncomment the
+       block and add a matching link to .nav__menu:
          News / Publications / Projects / Teaching & Service / Awards
-     · 社交链接目前只有 GitHub。日后有 Google Scholar / ORCID 时，
-       在 .hero__links 里加 <li>，并同步补进上面的 JSON-LD sameAs 数组。
+     · Social links: GitHub only for now. When you have Google Scholar or
+       ORCID, add an <li> in .hero__links and append the URL to the JSON-LD
+       "sameAs" array above.
      ========================================================================= -->
 
 <header class="site-header">
@@ -70,9 +78,9 @@
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
-      <!-- 启用「News」后加：<li><a href="#news">News</a></li> -->
-      <!-- 启用「Publications」后加：<li><a href="#publications">Publications</a></li> -->
-      <!-- 启用「Projects」后加：<li><a href="#projects">Projects</a></li> -->
+      <!-- Enable News:        <li><a href="#news">News</a></li> -->
+      <!-- Enable Publications: <li><a href="#publications">Publications</a></li> -->
+      <!-- Enable Projects:     <li><a href="#projects">Projects</a></li> -->
       <li>
         <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Toggle dark mode">
           <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -91,7 +99,7 @@
 
   <!-- ============================ Hero ============================ -->
   <section class="hero" id="top" aria-labelledby="hero-name">
-    <!-- ✏️ 待替换：replace with your photo (square, ≥ 400×400); just change the src -->
+    <!-- TODO: replace with your own photo (square, 400x400+); change the src only -->
     <img class="hero__avatar" src="assets/img/avatar.svg" alt="Portrait of Huaiyu Wu" width="176" height="176">
     <div class="hero__body">
       <h1 class="hero__name" id="hero-name">Huaiyu Wu</h1>
@@ -131,9 +139,9 @@
       correlation toward causal structure that is transferable and interpretable.
       I am always happy to discuss and collaborate.
     </p>
-    <!-- ✏️ 待替换：第二段目前只写了研究方向。等你有在研工作、复现结果、课程项目或实习经历，
-         补一段「做过什么 + 结果」，例如：
-         <p>Currently I am working on … ; I have also reproduced … .</p> -->
+    <!-- TODO: the paragraph above covers research interests only. Once you have
+         work in progress, results or reproductions, add one more paragraph such as:
+         <p>Currently I am working on ... ; I have also reproduced ... .</p> -->
 
     <h3 class="subhead">Research Interests</h3>
     <ul class="tag-list">
@@ -158,8 +166,9 @@
   </section>
 
   <!-- =========================================================================
-       以下栏目目前没有内容，先整段停用（宁缺勿假）。
-       有内容时把对应区块取消注释，并在顶部导航里加一行链接即可。
+       The sections below are disabled because there is nothing to show yet
+       (better empty than fake). Uncomment a block when you have content, and
+       add a matching link to .nav__menu at the top of this file.
 
   <section class="section" id="news" aria-labelledby="news-title">
     <h2 class="section__title" id="news-title">News</h2>
@@ -242,7 +251,7 @@
     <ul class="contact-list">
       <li><span class="contact-list__label">GitHub</span> <a href="https://github.com/whytiyoo">github.com/whytiyoo</a></li>
       <li><span class="contact-list__label">Homepage</span> <a href="https://whytiyoo.github.io/">https://whytiyoo.github.io/</a></li>
-      <!-- ✏️ 可选：日后有 Google Scholar / ORCID / 办公室地址时，按同样格式加一行
+      <!-- Optional: add Google Scholar / ORCID / office once available, e.g.
            <li><span class="contact-list__label">Google Scholar</span> <a href="https://scholar.google.com/citations?user=XXXXXXXX">Google Scholar profile</a></li> -->
     </ul>
   </section>
