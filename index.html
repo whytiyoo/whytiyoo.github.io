@@ -33,7 +33,6 @@
   "jobTitle": "硕士研究生",
   "affiliation": { "@type": "CollegeOrUniversity", "name": "上海交通大学人工智能学院" },
   "alumniOf": { "@type": "CollegeOrUniversity", "name": "清华大学" },
-  "email": "mailto:why_tiyoo@outlook.com",
   "url": "https://whytiyoo.github.io/",
   "image": "https://whytiyoo.github.io/assets/img/og-cover.png",
   "sameAs": [
@@ -48,16 +47,17 @@
 
 <!-- =========================================================================
      内容维护说明
-     · 已填写真实信息：姓名、身份、导师、邮箱、研究方向、教育经历、联系方式。
+     · 已填写真实信息：姓名、身份、导师、研究方向、教育经历、GitHub 链接。
+     · 按站点主人要求，**刻意不放**简历下载与邮箱：页面任何位置都没有 CV 按钮与 mailto 链接，
+       JSON-LD 里也没有 email 字段。日后想加回来，见本文件里对应位置的注释。
      · 仍需你替换的地方（全文搜索「待替换」）：
          1. 头像   assets/img/avatar.svg  → 换成你的照片（正方形，建议 ≥ 400×400）
-         2. 简历   assets/cv/CV.pdf       → 用你的 PDF 覆盖同名文件，文件名不用改
-         3. 「关于我」第二段：目前只写了研究方向，等你有在研工作/复现/实习时补一段
+         2. 「关于我」第二段：目前只写了研究方向，等你有在研工作/复现/实习时补一段
      · 以下栏目目前没有内容，代码以注释形式保留在下方，有内容时取消注释，
        并在顶部导航 .nav__menu 里同步加一行链接：
          最新动态（News）、论文发表（Publications）、科研与开源项目（Projects）、
          教学与服务（Teaching）、荣誉奖励（Awards）
-     · 社交链接：目前只有 GitHub 与邮箱。日后有 Google Scholar / ORCID 时，
+     · 社交链接：目前只有 GitHub。日后有 Google Scholar / ORCID 时，
        在 .hero__links 里加 <li>，并同步补进上面的 JSON-LD sameAs 数组。
      ========================================================================= -->
 
@@ -110,15 +110,9 @@
       </p>
       <ul class="hero__links" aria-label="常用链接">
         <li><a href="https://github.com/whytiyoo">GitHub</a></li>
-        <li><a href="mailto:why_tiyoo@outlook.com">Email</a></li>
         <!-- 有 Google Scholar / ORCID 后按同样格式加一行，例如：
              <li><a href="https://scholar.google.com/citations?user=XXXXXXXX">Google Scholar</a></li> -->
       </ul>
-      <p class="hero__actions">
-        <!-- ✏️ 待替换：用你的简历覆盖 assets/cv/CV.pdf 即可（文件名保持不变最省事） -->
-        <a class="btn btn--primary" href="assets/cv/CV.pdf">下载简历 (PDF)</a>
-        <a class="btn" href="mailto:why_tiyoo@outlook.com">发送邮件</a>
-      </p>
     </div>
   </section>
 
@@ -241,14 +235,13 @@
   <section class="section" id="contact" aria-labelledby="contact-title">
     <h2 class="section__title" id="contact-title">联系我</h2>
     <p>
-      欢迎就世界模型、因果推理及相关方向的学术交流与合作与我联系，我会尽量及时回复。
+      欢迎就世界模型、因果推理及相关方向与我交流，可以通过下面的方式找到我。
     </p>
     <ul class="contact-list">
-      <li><span class="contact-list__label">邮箱</span> <a href="mailto:why_tiyoo@outlook.com">why_tiyoo@outlook.com</a></li>
       <li><span class="contact-list__label">GitHub</span> <a href="https://github.com/whytiyoo">github.com/whytiyoo</a></li>
       <li><span class="contact-list__label">个人主页</span> <a href="https://whytiyoo.github.io/">https://whytiyoo.github.io/</a></li>
-      <!-- ✏️ 可选：知道办公室/通讯地址后再加一行
-           <li><span class="contact-list__label">办公室</span> 上海交通大学 XX 楼 XXX 室</li> -->
+      <!-- ✏️ 可选：日后有 Google Scholar / ORCID / 办公室地址时，按同样格式加一行
+           <li><span class="contact-list__label">Google Scholar</span> <a href="https://scholar.google.com/citations?user=XXXXXXXX">Google Scholar 主页</a></li> -->
     </ul>
   </section>
 

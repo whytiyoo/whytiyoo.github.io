@@ -27,6 +27,13 @@
 - 内容直接写在 HTML 里，改文字 = 改 HTML，所见即所得。
 - 自带深色模式、论文分类筛选、BibTeX 一键复制、移动端适配、SEO 结构化数据。
 
+> **本页当前状态**（吴怀宇的主页）：
+> - 已填写的内容：姓名、身份、导师、研究方向、教育经历、GitHub 链接。
+> - **刻意未放**：简历下载按钮、邮箱（页面无任何 `mailto:` 链接，结构化数据里也没有 email 字段）。
+> - 尚未启用：最新动态、论文发表、科研与开源项目、教学与服务、荣誉奖励
+>   —— 源码里以注释形式保留，取消注释即可启用。
+> - 需要你补的只有两处：**头像照片**、**「关于我」第二段（在研工作）**。
+
 ---
 
 ## 一、目录结构
@@ -37,11 +44,12 @@ v1-scholar/
 ├── README.md                     ← 本文件
 └── assets/
     ├── css/style.css             ← 样式（想换配色改最上面的「设计变量」）
-    ├── js/main.js                ← 交互（主题、筛选、复制引用）
+    ├── js/main.js                ← 交互（主题、滚动高亮、筛选、复制引用）
     ├── img/
     │   ├── avatar.svg            ← 头像占位图，换成你自己的照片
-    │   └── favicon.svg           ← 浏览器标签页图标
-    └── cv/CV.pdf                 ← 占位简历，替换成你自己的 CV
+    │   ├── favicon.svg           ← 浏览器标签页图标（当前是字母 W）
+    │   └── og-cover.png          ← 社交分享封面（1200×630）
+    └── cv/                       ← 预留目录：放简历用（当前为空，页面未引用）
 ```
 
 ---
@@ -50,11 +58,18 @@ v1-scholar/
 
 1. 双击 `index.html`，在浏览器里看效果。
 2. 用 VS Code 打开整个 `v1-scholar` 文件夹，按 `Ctrl+F` 搜索 **`待替换`**，
-   会依次定位到所有需要改的地方（标题、姓名、简介、链接、论文……）。
+   会依次定位到所有需要改的地方（头像、关于我第二段……）。
 3. 换成自己的头像：把照片（建议正方形，≥ 400×400）放到 `assets/img/`，
    然后把 `index.html` 里的
    `<img class="hero__avatar" src="assets/img/avatar.svg" ...>` 改成你的文件名。
-4. 换成自己的简历：把 PDF 覆盖 `assets/cv/CV.pdf` 即可（文件名保持 `CV.pdf` 最省事）。
+4. （可选）想加回「下载简历」按钮：把 PDF 放进 `assets/cv/CV.pdf`，
+   再在首屏 `<ul class="hero__links">` 后面加一段按钮，例如：
+
+   ```html
+   <p class="hero__actions">
+     <a class="btn btn--primary" href="assets/cv/CV.pdf">下载简历 (PDF)</a>
+   </p>
+   ```
 
 > 想先看效果不想改代码？也可以直接改 `index.html` 里的文字，中文随便替换，结构不用动。
 
@@ -65,15 +80,15 @@ v1-scholar/
 | 位置 | 改什么 |
 | --- | --- |
 | `<head>` | 网页标题、`meta description`、`canonical`、Open Graph 里的网址与封面图 |
-| `<script type="application/ld+json">` | 姓名、单位、邮箱、主页、Google Scholar / ORCID / GitHub 链接（**搜索引擎与 AI 检索靠它**） |
-| 首屏 `hero` | 姓名、英文名、身份（学校 + 学院 + 年级 + 导师）、一句话研究简介、四个链接、两个按钮 |
+| `<script type="application/ld+json">` | 姓名、单位、主页、Google Scholar / ORCID / GitHub 链接（**搜索引擎与 AI 检索靠它**） |
+| 首屏 `hero` | 姓名、英文名、身份（学校 + 学院 + 年级 + 导师）、一句话研究简介、社交链接 |
 | 关于我 `#about` | 两三段自我介绍、研究方向标签、教育经历 |
 | 最新动态 `#news` | 保留最近 5–8 条，最新的一条放最上面 |
 | 论文发表 `#publications` | 每篇一个 `<li class="pub">`，见下文 |
 | 科研与开源项目 `#projects` | 2–4 个项目，写「做什么 + 你负责什么 + 结果」 |
 | 教学与服务 `#teaching` | 助教、审稿、志愿者等 |
 | 荣誉奖励 `#awards` | 按年份倒序 |
-| 联系我 `#contact` | 邮箱、办公室、通讯地址、主页 |
+| 联系我 `#contact` | GitHub、个人主页（本页按主人要求不放邮箱） |
 | 页脚 | 版权年份、许可协议、最后更新日期 |
 
 ### 加一篇论文
