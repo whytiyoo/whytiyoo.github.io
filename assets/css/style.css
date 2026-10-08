@@ -136,6 +136,39 @@ code, pre { font-family: var(--font-mono); font-size: 0.86em; }
   border-radius: 3px;
 }
 
+/* --------------------------- 中英文语言切换 ---------------------------
+   页面里成对写着 <span data-lang="zh">…</span><span data-lang="en">…</span>，
+   由 <html data-lang="zh|en"> 决定显示哪一套，切换时无需重新加载。 */
+html[data-lang="zh"] [data-lang="en"] { display: none; }
+html[data-lang="en"] [data-lang="zh"] { display: none; }
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.lang-btn {
+  padding: 0.24rem 0.68rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.lang-btn:hover { color: var(--accent); }
+.lang-btn.is-active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+html[data-theme="dark"] .lang-btn.is-active { color: #10151c; }
+
 .btn {
   display: inline-block;
   padding: 0.5rem 1.05rem;
@@ -226,7 +259,8 @@ html[data-theme="dark"] .chip.is-active { color: #10151c; }
   padding: 0.7rem 1.5rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
 }
 
 .nav__brand {
@@ -235,7 +269,6 @@ html[data-theme="dark"] .chip.is-active { color: #10151c; }
   font-weight: 700;
   color: var(--ink);
   letter-spacing: 0.01em;
-  margin-right: auto;
 }
 .nav__brand:hover { text-decoration: none; color: var(--accent); }
 
@@ -243,9 +276,15 @@ html[data-theme="dark"] .chip.is-active { color: #10151c; }
   display: flex;
   align-items: center;
   gap: 1.15rem;
-  margin: 0;
+  margin: 0 0 0 auto;
   padding: 0;
   list-style: none;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
 }
 .nav__menu li { margin: 0; }
 .nav__menu a {
@@ -310,9 +349,11 @@ html[data-theme="dark"] .theme-toggle__moon { display: block; }
 .hero__name {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 4.4vw, 2.6rem);
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.15rem;
   letter-spacing: -0.015em;
 }
+/* 英文界面下没有紧随其后的拼音名，把标题的下间距补回来 */
+html[data-lang="en"] .hero__name { margin-bottom: 0.85rem; }
 .hero__name-en {
   margin: 0 0 0.9rem;
   color: var(--muted);
@@ -571,11 +612,13 @@ html[data-theme="dark"] .theme-toggle__moon { display: block; }
 @media (max-width: 720px) {
   body { font-size: 16px; }
 
-  .nav { flex-wrap: wrap; padding: 0.6rem 1.15rem; }
-  .nav__toggle { display: inline-flex; margin-left: auto; order: 2; }
+  .nav { padding: 0.6rem 1.15rem; }
+  .nav__actions { margin-left: auto; order: 2; }
+  .nav__toggle { display: inline-flex; }
   .nav__menu {
     order: 3;
     flex-basis: 100%;
+    margin: 0;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
